@@ -12,18 +12,14 @@ const getRecipe = async () => {
   let searchResults = findRecipe.data.hits
   let resultsList = []
   for (let i = 0; i < searchResults.length; i++) {
-    let recipeThumb = findRecipe.data.hits[i].recipe.images.THUMBNAIL
+    let recipeThumb = findRecipe.data.hits[i].recipe.image
     let recipeNames = findRecipe.data.hits[i].recipe.label
     let recipeLinks = findRecipe.data.hits[i].recipe.url
     resultsList.push(recipeNames)
     thumbTitle[i].innerText = resultsList[i]
     thumbTitle[i].href = recipeLinks
+    imageThumb[i].innerHTML = `<img src=${recipeThumb} alt = "recipe"/>`
   }
 }
 
 button.addEventListener('click', getRecipe)
-
-
-
-// let recipePic = response.hits.recipe.images.SMALL
-// imageDiv.innerHTML = `<img src=${recipePic} alt = "recipe"/>`
