@@ -1,0 +1,27 @@
+
+Definitions and synonyms for more than 150,000 words
+https://www.wordsapi.com/docs/
+
+A simple excuse generator
+https://excuser.herokuapp.com/
+
+Random Useless Facts
+https://uselessfacts.jsph.pl/
+
+Google Maps
+https://developers.google.com/maps/
+
+Stock Market Data
+https://www.stockdata.org/
+
+News
+https://newsapi.org/docs
+
+Dad Jokes
+https://icanhazdadjoke.com/api
+
+Yo momma Jokes
+https://github.com/beanboi7/yomomma-apiv2/blob/master/jokes.json
+
+Nasa
+https://api.nasa.gov/
