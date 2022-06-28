@@ -18,7 +18,9 @@ const getRecipe = async () => {
     resultsList.push(recipeNames)
     thumbTitle[i].innerText = resultsList[i]
     thumbTitle[i].href = recipeLinks
-    imageThumb[i].innerHTML = `<img src=${recipeThumb} alt = "recipe"/>`
+    // imageThumb[i].innerHTML = `<img src=${recipeThumb} alt = "recipe"/>`
+    // imageThumb[i].style.backgroundImage = "url(images/img.jpg)"
+    imageThumb[i].style.backgroundImage = `url(${recipeThumb})`
   }
 }
 
