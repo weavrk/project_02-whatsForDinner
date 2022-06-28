@@ -5,13 +5,21 @@ const imageThumb = document.querySelectorAll('.thumbnail')
 const thumbTitle = document.querySelectorAll('.thumbnail-header')
 const search = document.querySelector('.search')
 
+const recipeInfo = () => {
+  let anchor = document.createElement("a");
+  let secondSearch = document.querySelector('.recipe-overview')
+  if (secondSearch !== null) {
+    secondSearch.remove()
+    recipeInfo()
+  } else {
+    anchor.href = "recipe_info.html";
+    anchor.innerText = "recipe overview";
+    search.appendChild(anchor).classList.add("recipe-overview");
+  }
+}
 
 const getRecipe = async () => {
-  let anchor = document.createElement("a");
-  anchor.href = "recipe_info.html";
-  anchor.innerText = "recipe overview";
-  search.appendChild(anchor).classList.add("recipe-overview");
-
+  recipeInfo()
   let ingredient = ingredientInput.value
   let findRecipe = await axios.get(`https://api.edamam.com/api/recipes/v2?type=public&q=${ingredient}&app_id=218e6a8e&app_key=900ce9d6818c4e1417a4bc410a2829b0`)
   console.log(findRecipe)
@@ -30,3 +38,4 @@ const getRecipe = async () => {
 }
 
 button.addEventListener('click', getRecipe)
+imageThumb.addEventListener('click', recipeLinks)
