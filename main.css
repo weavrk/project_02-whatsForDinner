@@ -2,6 +2,8 @@ html {
   margin: 30px;
   font-size: 14px;
   font-family: "Noto Sans", sans-serif;
+  color: #323535;
+  background-color: #fafafa;
 }
 
 header {
@@ -31,10 +33,13 @@ h1 {
   background-size: cover;
   background-repeat: no-repeat;
   margin-bottom: 10px;
+  background-position: center;
+  opacity: .9;
+  filter: saturate(90%);
 }
 
 a {
-  color: black;
+  color: #323535;
   text-decoration: underline solid 1px;
   text-underline-offset: 3px;
 }

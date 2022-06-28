@@ -38,4 +38,14 @@ const getRecipe = async () => {
 }
 
 button.addEventListener('click', getRecipe)
-imageThumb.addEventListener('click', recipeLinks)
+
+
+
+
+
+
+//label
+//total time
+//ingredients
+//calories
+//fat
