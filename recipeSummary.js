@@ -13,29 +13,43 @@ const search = document.querySelector('.search')
 let recipeSummary = document.querySelector('.recipe-summary')
 let recipeImages = document.querySelector('.recipe-images')
 
+const summaryTime = document.querySelectorAll('.summary-time')
+const summaryIngredients = document.querySelectorAll('.summary-ingredients')
+
+
 
 //OLD SEARCH
 const getRecipe = async () => {
   let ingredient = ingredientStorage
   let findRecipe = await axios.get(`https://api.edamam.com/api/recipes/v2?type=public&q=${ingredient}&app_id=218e6a8e&app_key=900ce9d6818c4e1417a4bc410a2829b0`)
+  console.log(findRecipe)
   const recipeResultsImages = () => {
     let searchResults = findRecipe.data.hits
     let resultsList = []
     for (let i = 0; i < searchResults.length; i++) {
       let recipeNames = findRecipe.data.hits[i].recipe.label
       let recipeLinks = findRecipe.data.hits[i].recipe.url
-      // let recipeIngredients = findRecipe.data.hits[i].recipe.url
-
-
+      let recipeTime = findRecipe.data.hits[i].recipe.totalTime
+      let recipeIngredients = findRecipe.data.hits[i].recipe.ingredients[i].food
+      // let recipeIngredients = findRecipe.data.hits[i].recipe.ingredients[i].food
 
       resultsList.push(recipeNames)
       thumbTitle[i].innerText = resultsList[i]
       thumbTitle[i].href = recipeLinks
+      const addTime = () => {
+        let recipeTimeTag = document.createElement("a")
+        recipeTimeTag.innerText = recipeTime
+        summaryTime[i].appendChild(recipeTimeTag).classList.add("summary-info")
+      }
+      addTime()
 
 
-
-
-
+      const addIngredients = () => {
+        let recipeIngredientsTag = document.createElement("li")
+        recipeIngredientsTag.innerText = recipeIngredients
+        summaryIngredients[i].appendChild(recipeIngredientsTag).classList.add("summary-info")
+      }
+      addIngredients()
 
     }
   }
