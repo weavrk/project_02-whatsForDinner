@@ -61,39 +61,89 @@ const getRecipe = async () => {
 
     //ingredientsListByRecipe is an array of objects of ingredients by recipe
     //put array item 1 in the first div
-
     const createList = () => {
       let foodList = ingredientsListByRecipe[selectedChild]
       console.log(foodList)
       let foodNames = []
+      let ingredientsList = []
 
       //need to pull just the food attribute
       for (let i = 0; i < foodList.length; i++) {
         let foodName = foodList[i].food
-
-        let ingredientTag = document.createElement("li")
-        ingredientTag.innerText = foodName
         foodNames.push(foodName)
+      }
+      console.log(foodNames)
+
+
+
+      //push list to DOM
+
+      let addList = summaryIngredients[selectedChild]
+      const entry = document.createElement('li')
+      entry.appendChild(document.createTextNode(foodNames))
+      addList.appendChild(entry)
+
+
+      //-----------
+
+
+      //create list item per food name
+      for (let i = 0; i < foodNames.length; i++) {
+        let ingredientTag = document.createElement("li")
+        ingredientTag.innerText = foodNames[i]
+        ingredientsList.push(ingredientTag)
         console.log(ingredientTag)
       }
+
+      //apply Food Names list to DOM
+      // for (let i = 0; i < summaryIngredients.length; i++) {
+      //   let addList = summaryIngredients[selectedChild]
+      //   addList.appendChild(ingredientsList)
+      //   console.log(addList)
+      // }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
     createList()
+
+
+
+
+
+    // let addList = summaryIngredients[selectedChild]
+    // addList.appendChild(ingredientTag)
+    // summaryIngredients.appendChild(foodNames).classList.add("summary-info")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //DON"T CHANGE BELOW
   }
   recipeResultsImages()
-
-  let addList = summaryIngredients[selectedChild]
-  addList.innerHTML = ingredientTag
-
-
-
-
-  //apply Food Names list to DOM
-
-  // let addList = summaryIngredients[selectedChild]
-  // addList.appendChild(ingredientTag)
-
-  // summaryIngredients.appendChild(foodNames).classList.add("summary-info")
-
 }
 getRecipe()
 
