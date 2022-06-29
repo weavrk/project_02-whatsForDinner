@@ -1,7 +1,6 @@
 // ingredientStorage = localStorage['dinner']
 // console.log(ingredientStorage)
 
-
 if (localStorage['dinner'] == undefined) {
   ingredientStorage = 'dinner'
   console.log(ingredientStorage)
@@ -40,7 +39,6 @@ const getRecipe = async () => {
   recipeResultsImages()
 }
 getRecipe()
-
 
 
 
