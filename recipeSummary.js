@@ -24,11 +24,20 @@ const getRecipe = async () => {
     for (let i = 0; i < searchResults.length; i++) {
       let recipeNames = findRecipe.data.hits[i].recipe.label
       let recipeLinks = findRecipe.data.hits[i].recipe.url
+      // let recipeIngredients = findRecipe.data.hits[i].recipe.url
+
+
+
       resultsList.push(recipeNames)
       thumbTitle[i].innerText = resultsList[i]
       thumbTitle[i].href = recipeLinks
+
+
+
+
+
+
     }
-    imageThumb.classList.add("summary-background")
   }
   recipeResultsImages()
 }
