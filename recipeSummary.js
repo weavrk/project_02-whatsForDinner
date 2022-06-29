@@ -99,26 +99,10 @@ const getRecipe = async () => {
       }
     }
     ingredientsIteration()
-
-
-
-
-
-
-
-
-
-
-
-    //DON"T CHANGE BELOW
   }
   recipeResultsImages()
 }
 getRecipe()
-
-
-
-
 
 
 //NEW SEARCH
@@ -129,6 +113,7 @@ const getNewRecipe = async () => {
   //THIS MAKES THE DATA GLOBAL BETWEEN PAGES!!
   localStorage['dinner'] = ingredient
   const recipeResultsImages = () => {
+    window.location.replace("/recipe-images.html");
     let searchResults = findRecipe.data.hits
     let resultsList = []
     for (let i = 0; i < searchResults.length; i++) {
@@ -142,6 +127,7 @@ const getNewRecipe = async () => {
       imageThumb[i].style.backgroundImage = `url(${recipeThumb})`
     }
   }
+
   recipeResultsImages()
 }
 
