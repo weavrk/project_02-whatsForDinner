@@ -22,9 +22,13 @@ const summaryIngredients = document.querySelectorAll('.summary-ingredients')
 const getRecipe = async () => {
   let ingredient = ingredientStorage
   let findRecipe = await axios.get(`https://api.edamam.com/api/recipes/v2?type=public&q=${ingredient}&app_id=218e6a8e&app_key=900ce9d6818c4e1417a4bc410a2829b0`)
+  let selectedChild = 0
+
   const recipeResultsImages = () => {
     let searchResults = findRecipe.data.hits
     let resultsList = []
+    let ingredientsListByRecipe = []
+
     for (let i = 0; i < searchResults.length; i++) {
       const addRecipeList = () => {
         let recipeNames = findRecipe.data.hits[i].recipe.label
@@ -43,91 +47,55 @@ const getRecipe = async () => {
       }
       addTime()
 
-      const addIngredients = () => {
+      const pullIngredientsPutInObject = () => {
         let recipeIngredients = findRecipe.data.hits[i].recipe.ingredients
-
-        const runIngredientsLoop = () => {
-          let ingredientsShell = []
-          //iterate through the food's list and put in array
-          for (let i = 0; i < recipeIngredients.length; i++) {
-            let individualIngredients = recipeIngredients[i].food
-            ingredientsShell.push(individualIngredients)
-          }
-          console.log(ingredientsShell)
-
-
-
-          //for all array items create a list item
-          for (let i = 0; i < ingredientsShell.length; i++) {
-            let recipeIngredientsTag = document.createElement("li")
-            recipeIngredientsTag.innerText = ingredientsShell[i]
-
-            //include in that loop appending to the nth child to keep the loop from exiting
-            let selectedRecipe = summaryIngredients[0]
-            selectedRecipe.appendChild(recipeIngredientsTag).classList.add("summary-info")
-          }
-
-
-
-
-
-          //select next child
-
-
-
-
-
-
-          let selectedRecipe = summaryIngredients[i]
-
-
-          // summaryIngredients[i].appendChild(recipeIngredientsTag).classList.add("summary-info")
-
-
-
-
-
-
-
-
-        }
-        runIngredientsLoop()
+        ingredientsListByRecipe.push(recipeIngredients)
       }
-      addIngredients()
+      pullIngredientsPutInObject()
     }
+    //END OF FOR LOOP
+
+
+    console.log(ingredientsListByRecipe)
+    console.log('hello')
+
+    //ingredientsListByRecipe is an array of objects of ingredients by recipe
+    //put array item 1 in the first div
+
+    const createList = () => {
+      let foodList = ingredientsListByRecipe[selectedChild]
+      console.log(foodList)
+      let foodNames = []
+
+      //need to pull just the food attribute
+      for (let i = 0; i < foodList.length; i++) {
+        let foodName = foodList[i].food
+
+        let ingredientTag = document.createElement("li")
+        ingredientTag.innerText = foodName
+        foodNames.push(foodName)
+        console.log(ingredientTag)
+      }
+    }
+    createList()
   }
   recipeResultsImages()
+
+  let addList = summaryIngredients[selectedChild]
+  addList.innerHTML = ingredientTag
+
+
+
+
+  //apply Food Names list to DOM
+
+  // let addList = summaryIngredients[selectedChild]
+  // addList.appendChild(ingredientTag)
+
+  // summaryIngredients.appendChild(foodNames).classList.add("summary-info")
+
 }
 getRecipe()
-
-
-
-
-
-// const addIngredients = () => {
-//   let recipeIngredients = findRecipe.data.hits[i].recipe.ingredients
-//   console.log(recipeIngredients)
-
-//   const runIngredientsLoop = () => {
-//     let ingredientsShell = []
-//     for (let i = 0; i < recipeIngredients.length; i++) {
-//       let recipeIngredientsTag = document.createElement("li")
-//       let individualIngredients = recipeIngredients[i].food
-//       //returning an array of each recipe's food list
-//       recipeIngredientsTag.innerText = individualIngredients
-//       //adds the inner text to the list item
-
-
-//       summaryIngredients[i].appendChild(recipeIngredientsTag).classList.add("summary-info")
-//       console.log(individualIngredients)
-//     }
-//   }
-//   runIngredientsLoop()
-// }
-// addIngredients()
-
-
-
 
 
 
