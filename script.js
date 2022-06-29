@@ -6,19 +6,7 @@ const search = document.querySelector('.search')
 let recipeSummary = document.querySelector('.recipe-summary')
 let recipeImages = document.querySelector('.recipe-images')
 
-//DON'T NEED ANYMORE, BUT USEFUL TO KEEP
-// const recipeInfoLink = () => {
-//   let recipeInfoAnchor = document.createElement("a");
-//   let secondSearch = document.querySelector('.recipe-overview')
-//   if (secondSearch !== null) {
-//     secondSearch.remove()
-//     recipeInfoLink()
-//   } else {
-//     recipeInfoAnchor.href = "recipe_info.html";
-//     recipeInfoAnchor.innerText = "recipe overview";
-//     search.appendChild(recipeInfoAnchor).classList.add("recipe-overview");
-//   }
-// }
+localStorage.clear()
 
 //pulls the images based on the search
 const getRecipe = async () => {
@@ -26,7 +14,7 @@ const getRecipe = async () => {
   let findRecipe = await axios.get(`https://api.edamam.com/api/recipes/v2?type=public&q=${ingredient}&app_id=218e6a8e&app_key=900ce9d6818c4e1417a4bc410a2829b0`)
   console.log(findRecipe)
   //THIS MAKES THE DATA GLOBAL BETWEEN PAGES!!
-  localStorage['ingredientKeyword'] = ingredient
+  localStorage['dinner'] = ingredient
   const recipeResultsImages = () => {
     let searchResults = findRecipe.data.hits
     let resultsList = []
@@ -45,3 +33,20 @@ const getRecipe = async () => {
 }
 
 button.addEventListener('click', getRecipe)
+
+
+
+
+//DON'T NEED ANYMORE, BUT USEFUL TO KEEP-adds a link. removes old anchor with same class if present.
+// const recipeInfoLink = () => {
+//   let recipeInfoAnchor = document.createElement("a");
+//   let secondSearch = document.querySelector('.recipe-overview')
+//   if (secondSearch !== null) {
+//     secondSearch.remove()
+//     recipeInfoLink()
+//   } else {
+//     recipeInfoAnchor.href = "recipe_info.html";
+//     recipeInfoAnchor.innerText = "recipe overview";
+//     search.appendChild(recipeInfoAnchor).classList.add("recipe-overview");
+//   }
+// }

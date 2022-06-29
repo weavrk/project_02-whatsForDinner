@@ -1,5 +1,14 @@
-ingredientStorage = localStorage['ingredientKeyword']
-console.log(ingredientStorage)
+// ingredientStorage = localStorage['dinner']
+// console.log(ingredientStorage)
+
+
+if (localStorage['dinner'] == undefined) {
+  ingredientStorage = 'dinner'
+  console.log(ingredientStorage)
+} else {
+  ingredientStorage = localStorage['dinner']
+
+}
 
 const button = document.querySelector('button')
 const ingredientInput = document.querySelector('input')
@@ -14,7 +23,6 @@ let recipeImages = document.querySelector('.recipe-images')
 const getRecipe = async () => {
   let ingredient = ingredientStorage
   let findRecipe = await axios.get(`https://api.edamam.com/api/recipes/v2?type=public&q=${ingredient}&app_id=218e6a8e&app_key=900ce9d6818c4e1417a4bc410a2829b0`)
-  console.log(findRecipe)
   const recipeResultsImages = () => {
     let searchResults = findRecipe.data.hits
     let resultsList = []
@@ -33,13 +41,16 @@ const getRecipe = async () => {
 }
 getRecipe()
 
+
+
+
 //NEW SEARCH
 const getNewRecipe = async () => {
   let ingredient = ingredientInput.value
   let findRecipe = await axios.get(`https://api.edamam.com/api/recipes/v2?type=public&q=${ingredient}&app_id=218e6a8e&app_key=900ce9d6818c4e1417a4bc410a2829b0`)
-  console.log(findRecipe)
+  localStorage.clear()
   //THIS MAKES THE DATA GLOBAL BETWEEN PAGES!!
-  localStorage['ingredientKeyword'] = ingredient
+  localStorage['dinner'] = ingredient
   const recipeResultsImages = () => {
     let searchResults = findRecipe.data.hits
     let resultsList = []
