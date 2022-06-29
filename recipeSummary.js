@@ -75,40 +75,16 @@ const getRecipe = async () => {
       console.log(foodNames)
 
 
-
       //push list to DOM
-
-      let addList = summaryIngredients[selectedChild]
-      const entry = document.createElement('li')
-      entry.appendChild(document.createTextNode(foodNames))
-      addList.appendChild(entry)
+      for (let i = 0; i < foodList.length; i++) {
+        let addList = summaryIngredients[selectedChild]
+        const entry = document.createElement('li')
+        entry.appendChild(document.createTextNode(foodNames[i]))
+        addList.appendChild(entry)
+      }
 
 
       //-----------
-
-
-      //create list item per food name
-      for (let i = 0; i < foodNames.length; i++) {
-        let ingredientTag = document.createElement("li")
-        ingredientTag.innerText = foodNames[i]
-        ingredientsList.push(ingredientTag)
-        console.log(ingredientTag)
-      }
-
-      //apply Food Names list to DOM
-      // for (let i = 0; i < summaryIngredients.length; i++) {
-      //   let addList = summaryIngredients[selectedChild]
-      //   addList.appendChild(ingredientsList)
-      //   console.log(addList)
-      // }
-
-
-
-
-
-
-
-
 
 
 
