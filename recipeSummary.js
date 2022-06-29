@@ -77,15 +77,10 @@ const getRecipe = async () => {
 
       //push list to DOM
       for (let i = 0; i < foodList.length; i++) {
-        const purge = ['salt', 'Salt', 'pepper', 'Pepper']
-        if (foodNames[i] == purge[i]) {
-          foodNames[i].remove()
-        } else {
-          let addList = summaryIngredients[selectedChild]
-          const entry = document.createElement('li')
-          entry.appendChild(document.createTextNode(foodNames[i]))
-          addList.appendChild(entry)
-        }
+        let addList = summaryIngredients[selectedChild]
+        const entry = document.createElement('li')
+        entry.appendChild(document.createTextNode(foodNames[i]))
+        addList.appendChild(entry)
       }
     }
     createList()
