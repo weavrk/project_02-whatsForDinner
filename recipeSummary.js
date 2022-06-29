@@ -45,28 +45,94 @@ const getRecipe = async () => {
 
       const addIngredients = () => {
         let recipeIngredients = findRecipe.data.hits[i].recipe.ingredients
-        console.log(recipeIngredients)
+
+        const runIngredientsLoop = () => {
+          let ingredientsShell = []
+          //iterate through the food's list and put in array
+          for (let i = 0; i < recipeIngredients.length; i++) {
+            let individualIngredients = recipeIngredients[i].food
+            ingredientsShell.push(individualIngredients)
+          }
+          console.log(ingredientsShell)
 
 
-        for (let i = 0; i < recipeIngredients.length; i++) {
-          let recipeIngredientsTag = document.createElement("li")
-          let individualIngredients = recipeIngredients[i].food
-          summaryIngredients[i].appendChild(recipeIngredientsTag).classList.add("summary-info")
+
+          //for all array items create a list item
+          for (let i = 0; i < ingredientsShell.length; i++) {
+            let recipeIngredientsTag = document.createElement("li")
+            recipeIngredientsTag.innerText = ingredientsShell[i]
+
+            //include in that loop appending to the nth child to keep the loop from exiting
+            let selectedRecipe = summaryIngredients[0]
+            selectedRecipe.appendChild(recipeIngredientsTag).classList.add("summary-info")
+          }
 
 
-          recipeIngredientsTag.innerText = individualIngredients
-          console.log(individualIngredients)
+
+
+
+          //select next child
+
+
+
+
+
+
+          let selectedRecipe = summaryIngredients[i]
+
+
+          // summaryIngredients[i].appendChild(recipeIngredientsTag).classList.add("summary-info")
+
+
+
+
+
+
+
+
         }
-
+        runIngredientsLoop()
       }
       addIngredients()
-
-
     }
   }
   recipeResultsImages()
 }
 getRecipe()
+
+
+
+
+
+// const addIngredients = () => {
+//   let recipeIngredients = findRecipe.data.hits[i].recipe.ingredients
+//   console.log(recipeIngredients)
+
+//   const runIngredientsLoop = () => {
+//     let ingredientsShell = []
+//     for (let i = 0; i < recipeIngredients.length; i++) {
+//       let recipeIngredientsTag = document.createElement("li")
+//       let individualIngredients = recipeIngredients[i].food
+//       //returning an array of each recipe's food list
+//       recipeIngredientsTag.innerText = individualIngredients
+//       //adds the inner text to the list item
+
+
+//       summaryIngredients[i].appendChild(recipeIngredientsTag).classList.add("summary-info")
+//       console.log(individualIngredients)
+//     }
+//   }
+//   runIngredientsLoop()
+// }
+// addIngredients()
+
+
+
+
+
+
+
+
 
 //NEW SEARCH
 const getNewRecipe = async () => {
