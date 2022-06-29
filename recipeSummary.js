@@ -53,19 +53,20 @@ const getRecipe = async () => {
       }
       pullIngredientsPutInObject()
     }
-    //END OF FOR LOOP
-
-
     console.log(ingredientsListByRecipe)
-    console.log('hello')
-
     //ingredientsListByRecipe is an array of objects of ingredients by recipe
+    //END OF LOOP FOR ADDING RECIPE NAME AND TOTAL TIME
+
+
+    // -----------------------
+
+
+    //START LOOP FOR ADDING INGREDIENTS LIST
     //put array item 1 in the first div
     const createList = () => {
       let foodList = ingredientsListByRecipe[selectedChild]
       console.log(foodList)
       let foodNames = []
-      let ingredientsList = []
 
       //need to pull just the food attribute
       for (let i = 0; i < foodList.length; i++) {
@@ -74,38 +75,35 @@ const getRecipe = async () => {
       }
       console.log(foodNames)
 
-
       //push list to DOM
       for (let i = 0; i < foodList.length; i++) {
-        let addList = summaryIngredients[selectedChild]
-        const entry = document.createElement('li')
-        entry.appendChild(document.createTextNode(foodNames[i]))
-        addList.appendChild(entry)
+        const purge = ['salt', 'Salt', 'pepper', 'Pepper']
+        if (foodNames[i] == purge[i]) {
+          foodNames[i].remove()
+        } else {
+          let addList = summaryIngredients[selectedChild]
+          const entry = document.createElement('li')
+          entry.appendChild(document.createTextNode(foodNames[i]))
+          addList.appendChild(entry)
+        }
       }
-
-
-      //-----------
-
-
-
-
-
-
-
     }
     createList()
+    //END OF LOOP FOR ADDING INGREDIENTS LIST
 
 
+    // -----------------------
 
 
-
-    // let addList = summaryIngredients[selectedChild]
-    // addList.appendChild(ingredientTag)
-    // summaryIngredients.appendChild(foodNames).classList.add("summary-info")
-
-
-
-
+    //START LOOP FOR ITERATING INGREDIENTS LIST
+    const ingredientsIteration = () => {
+      for (let i = 0; i < searchResults.length; i++) {
+        selectedChild += 1
+        createList()
+        console.log(selectedChild)
+      }
+    }
+    ingredientsIteration()
 
 
 
